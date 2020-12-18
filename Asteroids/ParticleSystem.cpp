@@ -13,7 +13,6 @@ void ParticleSystem::Update() {
 		//Removed dead particals
 		if ((**it).isDead) {
 			it = particles.erase(it);
-			//cout << "Partical Despawn!" << endl;
 		}
 		else {
 			++it;

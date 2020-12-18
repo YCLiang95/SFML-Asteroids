@@ -2,7 +2,7 @@
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
 
-class Ball {
+class CircleCollider {
 public:
 	//The x, y postion of the ball
 	float x, y;
@@ -16,18 +16,9 @@ public:
 
 	sf::CircleShape shape;
 
-	sf::SoundBuffer bufferHitSound;
-	sf::SoundBuffer bufferLoseSound;
-	sf::Sound hitSound;
-	sf::Sound loseSound;
-
-	sf::Texture texture;
-	sf::Sprite sprite;
-
-	Ball();
+	CircleCollider();
 
 public:
 	void Update();
 	void Draw();
-	void Reset(bool left = false);
 };
