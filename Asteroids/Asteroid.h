@@ -1,5 +1,9 @@
 #pragma once
+#include "Pawn.h"
 
-class Asteroid {
+class Asteroid : public Pawn{
+public:
+	Asteroid(int size);
+
 
 };

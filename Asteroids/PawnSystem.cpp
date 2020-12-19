@@ -11,9 +11,9 @@ void PawnSystem::Update() {
 	for (int i = 0; i < pawns.size(); i++)
 		pawns[i]->Update();
 
-	for (vector<Pawn*>::iterator it = pawns.begin(); it != pawns.end();) {
-		//(**it).Update();
+	//Check for collision
 
+	for (vector<Pawn*>::iterator it = pawns.begin(); it != pawns.end();) {
 		//Removed dead particals
 		if ((**it).isDead)
 			it = pawns.erase(it);
@@ -30,4 +30,9 @@ PawnSystem* PawnSystem::getInstance() {
 	if (!instance)
 		instance = new PawnSystem;
 	return instance;
+}
+
+void PawnSystem::Clear() {
+	for (int i = 0; i < pawns.size(); i++)
+		pawns[i]->isDead = true;
 }

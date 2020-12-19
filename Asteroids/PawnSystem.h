@@ -10,6 +10,7 @@ public:
 
 	void Draw();
 	void Update();
+	void Clear();
 
 	void Add(Pawn* pawn);
 

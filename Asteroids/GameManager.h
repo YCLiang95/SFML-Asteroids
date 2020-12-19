@@ -7,6 +7,11 @@
 #include "Pawn.h"
 #include "Ship.h"
 
+const int STATE_MAIN_MENU = 0;
+const int STATE_IS_RUNNING = 1;
+const int STATE_GAMEOVER = 2;
+const int STATE_WIN = 3;
+
 class GameManager {
     GameManager() {
         width = 800;
@@ -17,7 +22,9 @@ class GameManager {
         timeScale = 1.0f;
         lastTime = clock();
         deltaTime = 0;
-
+        life = 3;
+        level = 0;
+        state = STATE_MAIN_MENU;
 
         ps = ParticleSystem::getInstance();
         pawnSystem = PawnSystem::getInstance();
@@ -25,7 +32,9 @@ class GameManager {
         Ship* ship = new Ship();
         pawnSystem->Add(ship);
 
-        isRunning = true;
+        isRunning = false;
+
+        LoadFont();
     }
 
 
@@ -44,11 +53,26 @@ public:
     float timeScale;
     bool isRunning;
 
+    int life = 3;
+    int level = 0;
+    int Asteroids = 0;
+
+    int state;
+
+    sf::Font font;
+    sf::Text lifeCountText;
+    sf::Text asteroidsCountText;
+    sf::Text winningText;
+    sf::Text gameOverText;
+    sf::Text mainMenuText;
+
     ParticleSystem* ps;
     PawnSystem* pawnSystem;
 
-    ~GameManager() {
-    }
+    //~GameManager() {
+    //}
+
+    void LoadFont();
 
 private:
     static GameManager* instance;
