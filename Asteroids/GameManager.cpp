@@ -8,6 +8,7 @@ void GameManager::Update() {
     if (state == STATE_MAIN_MENU) {
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Enter)) {
             level = 0;
+            GenerateLevel();
             state = STATE_IS_RUNNING;
             isRunning = true;
         }
@@ -23,6 +24,7 @@ void GameManager::Update() {
     else if (state == STATE_WIN) {
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Enter)) {
             level += 1;
+            GenerateLevel();
             state = STATE_IS_RUNNING;
             isRunning = true;
         }
@@ -31,7 +33,8 @@ void GameManager::Update() {
             pawnSystem->Clear();
             isRunning = false;
             state = STATE_GAMEOVER;
-        } else if (Asteroids <= 0) {
+        } else if (asteroidsCount <= 0) {
+            pawnSystem->Clear();
             state = STATE_WIN;
             isRunning = false;
         }
@@ -65,7 +68,7 @@ void GameManager::Draw() {
     } else if (state == STATE_IS_RUNNING) {
         lifeCountText.setString("Life: " + std::to_string(life));
         window.draw(lifeCountText);
-        asteroidsCountText.setString(std::to_string(Asteroids) + " Asteroids remain");
+        asteroidsCountText.setString(std::to_string(asteroidsCount) + " Asteroids remain");
         window.draw(asteroidsCountText);
         ps->Draw();
         pawnSystem->Draw();
@@ -121,4 +124,13 @@ void GameManager::LoadFont() {
     winningText.setFillColor(sf::Color::White);
     winningText.setPosition(400.0f, 300.0f);
     winningText.setString("You Won! Press Enter to Next Level");
+}
+
+void GameManager::GenerateLevel() {
+    int count = (level + 2) * (rand() % 3 + 1) + rand() % 3 + (level * (rand() % 3));
+    asteroidsCount = count;
+    for (int i = 0; i < count; i++) {
+        Asteroid* asteroid = new Asteroid(rand() % 3 + 1);
+        pawnSystem->Add(asteroid);
+    }
 }

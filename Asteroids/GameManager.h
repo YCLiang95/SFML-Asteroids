@@ -6,6 +6,7 @@
 #include "PawnSystem.h"
 #include "Pawn.h"
 #include "Ship.h"
+#include "Asteroid.h"
 
 const int STATE_MAIN_MENU = 0;
 const int STATE_IS_RUNNING = 1;
@@ -55,7 +56,7 @@ public:
 
     int life = 3;
     int level = 0;
-    int Asteroids = 0;
+    int asteroidsCount = 0;
 
     int state;
 
@@ -73,6 +74,8 @@ public:
     //}
 
     void LoadFont();
+    void GenerateLevel();
+
 
 private:
     static GameManager* instance;
