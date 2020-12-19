@@ -25,14 +25,21 @@ void Ship::Update() {
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::W)) {
 		speedx += dir.x * speed * GameManager::getInstance()->deltaTime;
 		speedy += dir.y * speed * GameManager::getInstance()->deltaTime;
+		Particle* particle = new Particle(x -dir.x * 5.0f + radius, y - dir.y * 5.0f + radius, -speedx - dir.x * 100.0f, -speedy - dir.y * 100.0f, sf::Color::Red, 0.5f);
+		ParticleSystem::getInstance()->Add(particle);
 	}
 
 	//Firing
 	if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left) && fireTimer > fireTime) {
 		fireTimer = 0;
-		Bullet* bullet = new Bullet(x + dir.x * 5.0f, y + dir.y * 5.0f, dir.x * 100.0f, dir.y * 100.0f);
-		ParticleSystem::getInstance()->Add(bullet);
+		Bullet* bullet = new Bullet(x + dir.x * 5.0f, y + dir.y * 5.0f, speedx + dir.x * 300.0f, speedy + dir.y * 300.0f);
+		PawnSystem::getInstance()->Add(bullet);
 	}
 	
 	Pawn::Update();
+
+	if (x < 0) x = GameManager::getInstance()->width;
+	if (y < 0) y = GameManager::getInstance()->height;
+	if (x > GameManager::getInstance()->width) x = 0;
+	if (y > GameManager::getInstance()->height) y = 0;
 }
