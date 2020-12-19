@@ -4,6 +4,8 @@
 #include "Pawn.h"
 #include "Particle.h"
 
-class Bullet : Pawn {
-
+class Bullet : public Particle {
+public:
+	Bullet(float x, float y, float speedx, float speedy);
+	void Update() override;
 };

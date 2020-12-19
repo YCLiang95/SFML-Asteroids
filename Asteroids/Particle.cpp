@@ -2,6 +2,7 @@
 #include "GameManager.h"
 
 void Particle::Draw() {
+	shape.setPosition(x, y);
 	GameManager::getInstance()->window.draw(shape);
 }
 
@@ -14,6 +15,4 @@ void Particle::Update() {
 
 	x += speedx * GameManager::getInstance()->deltaTime;
 	y += speedy * GameManager::getInstance()->deltaTime;
-
-	shape.setPosition(x , y);
 }

@@ -1,6 +1,8 @@
 #include "Ship.h"
 #include "GameManager.h"
 #include <math.h>
+#include "Bullet.h"
+#include "PawnSystem.h"
 
 void Ship::Draw() {
 	Pawn::Draw();
@@ -10,6 +12,8 @@ void Ship::Draw() {
 }
 
 void Ship::Update() {
+	fireTimer += GameManager::getInstance()->deltaTime;
+
 	//Aiming
 	sf::Vector2i mousePosition = sf::Mouse::getPosition(GameManager::getInstance()->window);
 	sf::Vector2f dir = sf::Vector2f(mousePosition.x - x, mousePosition.y - y);
@@ -24,7 +28,10 @@ void Ship::Update() {
 	}
 
 	//Firing
-	if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left)) {
+	if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left) && fireTimer > fireTime) {
+		fireTimer = 0;
+		Bullet* bullet = new Bullet(x + dir.x * 5.0f, y + dir.y * 5.0f, dir.x * 100.0f, dir.y * 100.0f);
+		ParticleSystem::getInstance()->Add(bullet);
 	}
 	
 	Pawn::Update();

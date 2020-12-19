@@ -28,6 +28,6 @@ public:
 		shape.setFillColor(color);
 	}
 
-	void Update();
+	void virtual Update();
 	void Draw();
 };

@@ -8,8 +8,11 @@ void PawnSystem::Draw() {
 }
 
 void PawnSystem::Update() {
+	for (int i = 0; i < pawns.size(); i++)
+		pawns[i]->Update();
+
 	for (vector<Pawn*>::iterator it = pawns.begin(); it != pawns.end();) {
-		(**it).Update();
+		//(**it).Update();
 
 		//Removed dead particals
 		if ((**it).isDead)

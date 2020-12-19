@@ -12,5 +12,8 @@ public:
 
 	float angle;
 
-	float speed = 30.0f;
+	float fireTime = 1.0f;
+	float fireTimer = 1.0f;
+
+	float speed = 50.0f;
 };
