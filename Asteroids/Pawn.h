@@ -2,7 +2,7 @@
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
 
-class CircleCollider {
+class Pawn {
 public:
 	//The x, y postion of the ball
 	float x, y;
@@ -12,13 +12,19 @@ public:
 	//The direction of the ball
 	float speedx, speedy;
 
-	bool isLauched;
-
 	sf::CircleShape shape;
 
-	CircleCollider();
+	int hp = 1;
+
+	bool isDead;
+
+	Pawn();
 
 public:
-	void Update();
-	void Draw();
+	void virtual Update();
+	void virtual Draw();
+	void virtual Collide(Pawn) {};
+	void virtual Destroy() {
+		isDead = true;
+	};
 };

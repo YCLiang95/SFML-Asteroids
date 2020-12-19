@@ -1,9 +1,9 @@
 #pragma once
-
 #include <SFML/Graphics.hpp>
-
+#include <SFML/Audio.hpp>
 #include "Pawn.h"
-#include "GameManager.h"
 #include "Particle.h"
-#include "ParticleSystem.h"
-#include "PawnSystem.h"
+
+class Bullet : Pawn {
+
+};

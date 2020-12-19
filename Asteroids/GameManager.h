@@ -3,6 +3,9 @@
 #include <SFML/Audio.hpp>
 #include <iostream>
 #include "ParticleSystem.h"
+#include "PawnSystem.h"
+#include "Pawn.h"
+#include "Ship.h"
 
 class GameManager {
     GameManager() {
@@ -17,6 +20,10 @@ class GameManager {
 
 
         ps = ParticleSystem::getInstance();
+        pawnSystem = PawnSystem::getInstance();
+
+        Ship* ship = new Ship();
+        pawnSystem->Add(ship);
 
         isRunning = true;
     }
@@ -38,6 +45,7 @@ public:
     bool isRunning;
 
     ParticleSystem* ps;
+    PawnSystem* pawnSystem;
 
     ~GameManager() {
     }

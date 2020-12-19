@@ -14,6 +14,9 @@ void GameManager::Update() {
     deltaTime = (float)(clock() - lastTime) / CLOCKS_PER_SEC * timeScale;
     lastTime = clock();
 
+    ps->Update();
+    pawnSystem->Update();
+
     sf::Event event;
     while (window.pollEvent(event))
     {
@@ -23,14 +26,14 @@ void GameManager::Update() {
         }
     }
 
-
-
     Draw();
 }
 
 void GameManager::Draw() {
     window.clear();
 
+    ps->Draw();
+    pawnSystem->Draw();
 
     window.display();
 }
