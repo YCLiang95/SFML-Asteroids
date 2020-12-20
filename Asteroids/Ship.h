@@ -14,6 +14,7 @@ public:
 	Ship();
 
 	sf::Sprite sprite;
+	sf::Texture texture;
 
 	float angle;
 
@@ -24,4 +25,7 @@ public:
 
 	float respawnInvi = 2.0f;
 	float respawnTimer = 0.0f;
+
+	sf::SoundBuffer bufferLoseSound;
+	sf::Sound loseSound;
 };

@@ -6,8 +6,8 @@
 
 void Ship::Draw() {
 	Pawn::Draw();
-	sprite.setPosition(x, y);
-	sprite.setRotation(angle);
+	sprite.setPosition(x + radius, y + radius);
+	sprite.setRotation(angle + 90);
 	GameManager::getInstance()->window.draw(sprite);
 }
 
@@ -50,8 +50,20 @@ Ship::Ship() : Pawn(){
 	angle = 0;
 	fireTime = 1.0f;
 	fireTimer = 1.0f;
-
 	speed = 50.0f;
+
+	if (!texture.loadFromFile("ship.png")) {
+		std::cout << "Faild to load image" << std::endl;
+		return;
+	}
+	sprite.setTexture(texture);
+	sprite.setScale(0.5f, 0.5f);
+	sprite.setOrigin(32, 32);
+
+	if (!bufferLoseSound.loadFromFile("score.wav")) {
+		std::cout << "Failded to load lose sound" << std::endl;
+	}
+	loseSound.setBuffer(bufferLoseSound);
 }
 
 void Ship::Collide(Pawn* pawn) {
@@ -65,11 +77,17 @@ void Ship::Collide(Pawn* pawn) {
 void Ship::Destroy() {
 	if (GameManager::getInstance()->life > 1) {
 		GameManager::getInstance()->life -= 1;
+		loseSound.play();
+		for (int i = 0; i < 100; i++) {
+			Particle* particle = new Particle(x, y, -rand() % 400 + 200, -rand() % 400 + 200, sf::Color::Blue, 1.0f);
+			ParticleSystem::getInstance()->Add(particle);
+		}
 		respawnTimer = 0;
 		x = 400;
 		y = 300;
 		speedx = 0.0f;
 		speedy = 0.0f;
+
 	} else {
 		isDead = true;
 		GameManager::getInstance()->state = STATE_GAMEOVER;

@@ -33,6 +33,21 @@ class GameManager {
         isRunning = false;
 
         LoadFont();
+
+        if (!bufferVictorySound.loadFromFile("victory.wav")) {
+            std::cout << "Failded to load victory sound" << std::endl;
+        }
+
+        if (!bufferBGM.loadFromFile("bgm.wav")) {
+            std::cout << "Failded to load bgm sound" << std::endl;
+        }
+
+        victorySound.setBuffer(bufferVictorySound);
+
+        bgmSound.setBuffer(bufferBGM);
+        bgmSound.setLoop(true);
+        bgmSound.setVolume(50);
+        bgmSound.play();
     }
 
 
@@ -63,6 +78,11 @@ public:
     sf::Text winningText;
     sf::Text gameOverText;
     sf::Text mainMenuText;
+
+    sf::SoundBuffer bufferVictorySound;
+    sf::SoundBuffer bufferBGM;
+    sf::Sound victorySound;
+    sf::Sound bgmSound;
 
     ParticleSystem* ps;
     PawnSystem* pawnSystem;

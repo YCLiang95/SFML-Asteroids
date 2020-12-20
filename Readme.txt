@@ -1,2 +1,4 @@
-Sorry I am still working on it, submit the link in advance just in case
-Should be able to finish in Saturaday, hopefully
+Made a intial build, still working on adding sprite and sound
+
+W for throtle
+left click for fire

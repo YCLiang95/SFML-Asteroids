@@ -16,6 +16,11 @@ Asteroid::Asteroid(int size) : Pawn() {
 	y = rand() % 600;
 
 	type = "Asteroid";
+
+	if (!bufferHitSound.loadFromFile("hit.wav")) {
+		std::cout << "Failded to load hit sound" << std::endl;
+	}
+	hitSound.setBuffer(bufferHitSound);
 }
 
 void Asteroid::Update() {
@@ -30,6 +35,7 @@ void Asteroid::Update() {
 void Asteroid::Destroy() {
 	if (isDead)
 		return;
+	hitSound.play();
 	isDead = true;
 	GameManager::getInstance()->asteroidsCount -= 1;
 	if (hp > 1) {

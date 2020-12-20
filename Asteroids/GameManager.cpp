@@ -35,6 +35,7 @@ void GameManager::Update() {
             state = STATE_GAMEOVER;
         } else if (asteroidsCount <= 0) {
             pawnSystem->Clear();
+            victorySound.play();
             state = STATE_WIN;
             isRunning = false;
         }

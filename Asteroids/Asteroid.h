@@ -11,4 +11,8 @@ public:
 	void Destroy() override;
 
 	void Collide(Pawn* pawn) override;
+
+	sf::SoundBuffer bufferHitSound;
+	sf::Sound hitSound;
+
 };
