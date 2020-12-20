@@ -7,7 +7,7 @@ public:
 	Asteroid(int size);
 
 	void Update() override;
-
+	void Draw() override;
 	void Destroy() override;
 
 	void Collide(Pawn* pawn) override;
@@ -15,4 +15,6 @@ public:
 	sf::SoundBuffer bufferHitSound;
 	sf::Sound hitSound;
 
+	sf::Texture texture;
+	sf::Sprite sprite;
 };

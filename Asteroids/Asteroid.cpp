@@ -21,6 +21,14 @@ Asteroid::Asteroid(int size) : Pawn() {
 		std::cout << "Failded to load hit sound" << std::endl;
 	}
 	hitSound.setBuffer(bufferHitSound);
+
+	if (!texture.loadFromFile("asteroid.png")) {
+		std::cout << "Faild to load image" << std::endl;
+		return;
+	}
+	sprite.setTexture(texture);
+	sprite.setScale(0.03f * hp, 0.03f * hp);
+	sprite.setOrigin(400, 400);
 }
 
 void Asteroid::Update() {
@@ -66,4 +74,10 @@ void Asteroid::Collide(Pawn* pawn) {
 	} else {
 		Destroy();
 	}
+}
+
+void Asteroid::Draw() {
+	Pawn::Draw();
+	sprite.setPosition(x + radius, y + radius);
+	GameManager::getInstance()->window.draw(sprite);
 }

@@ -48,8 +48,8 @@ void Ship::Update() {
 Ship::Ship() : Pawn(){
 	type = "Ship";
 	angle = 0;
-	fireTime = 1.0f;
-	fireTimer = 1.0f;
+	fireTime = 0.25f;
+	fireTimer = 0.25f;
 	speed = 50.0f;
 
 	if (!texture.loadFromFile("ship.png")) {
