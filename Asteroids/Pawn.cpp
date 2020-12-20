@@ -35,3 +35,8 @@ void Pawn::Draw() {
 	shape.setPosition(x, y);
 	GameManager::getInstance()->window.draw(shape);
 }
+
+void Pawn::Collide(Pawn* pawn) {
+	std::cout << "Colldie!" << std::endl;
+	Destroy();
+}

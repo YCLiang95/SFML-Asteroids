@@ -7,4 +7,6 @@ public:
 	Asteroid(int size);
 
 	void Update() override;
+
+	void Destroy() override;
 };

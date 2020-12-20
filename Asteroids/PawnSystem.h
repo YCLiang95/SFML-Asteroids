@@ -8,6 +8,8 @@ class PawnSystem {
 public:
 	static PawnSystem* getInstance();
 
+	PawnSystem();
+
 	void Draw();
 	void Update();
 	void Clear();
@@ -15,6 +17,8 @@ public:
 	void Add(Pawn* pawn);
 
 	vector<Pawn*> pawns;
+
+	vector<vector<vector<Pawn*>>> bucket;
 
 private:
 	static PawnSystem* instance;
