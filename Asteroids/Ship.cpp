@@ -79,7 +79,7 @@ void Ship::Destroy() {
 		GameManager::getInstance()->life -= 1;
 		loseSound.play();
 		for (int i = 0; i < 100; i++) {
-			Particle* particle = new Particle(x, y, -rand() % 400 + 200, -rand() % 400 + 200, sf::Color::Blue, 1.0f);
+			Particle* particle = new Particle(x, y, -rand() % 400 + 200, -rand() % 400 + 200, sf::Color::Blue, (rand() % 5) / 10.0f + 0.3f);
 			ParticleSystem::getInstance()->Add(particle);
 		}
 		respawnTimer = 0;

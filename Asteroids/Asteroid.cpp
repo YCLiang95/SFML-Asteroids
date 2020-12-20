@@ -43,9 +43,14 @@ void Asteroid::Update() {
 void Asteroid::Destroy() {
 	if (isDead)
 		return;
+	for (int i = 0; i < 100; i++) {
+		Particle* particle = new Particle(x, y, -rand() % 400 + 200, -rand() % 400 + 200, sf::Color::Red, (rand() % 5) / 10.0f + 0.2f);
+		ParticleSystem::getInstance()->Add(particle);
+	}
 	hitSound.play();
 	isDead = true;
 	GameManager::getInstance()->asteroidsCount -= 1;
+	GameManager::getInstance()->score += 1;
 	if (hp > 1) {
 		Asteroid* small1 = new Asteroid(hp - 1);
 		Asteroid* small2 = new Asteroid(hp - 1);

@@ -8,6 +8,7 @@ void GameManager::Update() {
     if (state == STATE_MAIN_MENU) {
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Enter)) {
             level = 0;
+            score = 0;
             GenerateLevel();
             state = STATE_IS_RUNNING;
             isRunning = true;
@@ -79,6 +80,9 @@ void GameManager::Draw() {
         window.draw(winningText);
     }
 
+    scoreText.setString("Score: " + std::to_string(score));
+    window.draw(scoreText);
+
     window.display();
 }
 
@@ -125,6 +129,12 @@ void GameManager::LoadFont() {
     winningText.setFillColor(sf::Color::White);
     winningText.setPosition(400.0f, 300.0f);
     winningText.setString("You Won! Press Enter to Next Level");
+
+    scoreText.setFont(font);
+    scoreText.setCharacterSize(24);
+    scoreText.setFillColor(sf::Color::White);
+    scoreText.setPosition(400.0f, 0.0f);
+    scoreText.setString("Score: ");
 }
 
 void GameManager::GenerateLevel() {

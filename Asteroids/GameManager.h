@@ -69,6 +69,7 @@ public:
     int life = 3;
     int level = 0;
     int asteroidsCount = 0;
+    int score = 0;
 
     int state;
 
@@ -78,6 +79,7 @@ public:
     sf::Text winningText;
     sf::Text gameOverText;
     sf::Text mainMenuText;
+    sf::Text scoreText;
 
     sf::SoundBuffer bufferVictorySound;
     sf::SoundBuffer bufferBGM;
