@@ -20,6 +20,6 @@ void Bullet::Update() {
 }
 
 void Bullet::Collide(Pawn* pawn) {
-	if (pawn->type.compare("Astroid") == 0)
+	if (pawn->type.compare("Asteroid") == 0)
 		Destroy();
 }

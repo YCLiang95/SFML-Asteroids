@@ -58,12 +58,8 @@ void Ship::Collide(Pawn* pawn) {
 	if (respawnTimer < respawnInvi)
 		return;
 
-	if (pawn->type.compare("Astroid") == 0) {
+	if (pawn->type.compare("Asteroid") == 0)
 		Destroy();
-		std::cout << pawn->x << "," << pawn->y << std::endl;
-	}
-	else
-		std::cout << "Collide with bullet" << std::endl;
 }
 
 void Ship::Destroy() {

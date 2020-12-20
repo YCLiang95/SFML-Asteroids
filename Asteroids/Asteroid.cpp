@@ -28,7 +28,10 @@ void Asteroid::Update() {
 }
 
 void Asteroid::Destroy() {
+	if (isDead)
+		return;
 	isDead = true;
+	GameManager::getInstance()->asteroidsCount -= 1;
 	if (hp > 1) {
 		Asteroid* small1 = new Asteroid(hp - 1);
 		Asteroid* small2 = new Asteroid(hp - 1);
@@ -41,8 +44,20 @@ void Asteroid::Destroy() {
 		small1->y = y + radius;
 		small2->x = x - radius;
 		small2->y = y - radius;
+		GameManager::getInstance()->asteroidsCount += 2;
 
 		PawnSystem::getInstance()->Add(small1);
 		PawnSystem::getInstance()->Add(small2);
+	}
+}
+
+void Asteroid::Collide(Pawn* pawn) {
+	if (pawn->type.compare("Asteroid") == 0) {
+		speedx = -speedx;
+		speedy = -speedy;
+		x += speedx * GameManager::getInstance()->deltaTime;
+		y += speedy * GameManager::getInstance()->deltaTime;
+	} else {
+		Destroy();
 	}
 }

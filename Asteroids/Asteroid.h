@@ -9,4 +9,6 @@ public:
 	void Update() override;
 
 	void Destroy() override;
+
+	void Collide(Pawn* pawn) override;
 };
