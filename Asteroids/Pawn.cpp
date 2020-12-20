@@ -14,6 +14,8 @@ Pawn::Pawn() {
 	hp = 1;
 	isDead = false;
 
+	type = "undefined";
+
 	radius = 10.0f;
 	shape.setRadius(radius);
 	shape.setFillColor(sf::Color(255,255,255));
@@ -37,6 +39,5 @@ void Pawn::Draw() {
 }
 
 void Pawn::Collide(Pawn* pawn) {
-	std::cout << "Colldie!" << std::endl;
 	Destroy();
 }

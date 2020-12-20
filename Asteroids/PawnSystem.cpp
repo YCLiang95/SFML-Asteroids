@@ -39,7 +39,7 @@ void PawnSystem::Update() {
 		for (int j = 0; j < 6; j++)
 			for (int k = 0; k < bucket[i][j].size(); k ++)
 				for (int l = 0; l < bucket[i][j].size(); l ++)
-					if (k != l && (bucket[i][j][k]->radius + bucket[i][j][l]->radius < sqrt(pow(bucket[i][j][k]->x - bucket[i][j][l]-> x, 2) + pow(bucket[i][j][k]->y - bucket[i][j][l]->y, 2)))){
+					if (k != l && (bucket[i][j][k]->radius + bucket[i][j][l]->radius > sqrt(pow(bucket[i][j][k]->x - bucket[i][j][l]-> x, 2) + pow(bucket[i][j][k]->y - bucket[i][j][l]->y, 2)))){
 						bucket[i][j][k]->Collide(bucket[i][j][l]);
 						bucket[i][j][l]->Collide(bucket[i][j][k]);
 		}

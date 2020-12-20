@@ -127,6 +127,9 @@ void GameManager::LoadFont() {
 }
 
 void GameManager::GenerateLevel() {
+    Ship* ship = new Ship();
+    pawnSystem->Add(ship);
+    life = 3;
     int count = (level + 2) * (rand() % 3 + 1) + rand() % 3 + (level * (rand() % 3));
     asteroidsCount = count;
     for (int i = 0; i < count; i++) {

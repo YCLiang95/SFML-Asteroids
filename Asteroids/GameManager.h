@@ -30,9 +30,6 @@ class GameManager {
         ps = ParticleSystem::getInstance();
         pawnSystem = PawnSystem::getInstance();
 
-        Ship* ship = new Ship();
-        pawnSystem->Add(ship);
-
         isRunning = false;
 
         LoadFont();

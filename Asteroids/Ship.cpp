@@ -13,6 +13,7 @@ void Ship::Draw() {
 
 void Ship::Update() {
 	fireTimer += GameManager::getInstance()->deltaTime;
+	respawnTimer += GameManager::getInstance()->deltaTime;
 
 	//Aiming
 	sf::Vector2i mousePosition = sf::Mouse::getPosition(GameManager::getInstance()->window);
@@ -42,4 +43,39 @@ void Ship::Update() {
 	if (y < 0) y = GameManager::getInstance()->height;
 	if (x > GameManager::getInstance()->width) x = 0;
 	if (y > GameManager::getInstance()->height) y = 0;
+}
+
+Ship::Ship() : Pawn(){
+	type = "Ship";
+	angle = 0;
+	fireTime = 1.0f;
+	fireTimer = 1.0f;
+
+	speed = 50.0f;
+}
+
+void Ship::Collide(Pawn* pawn) {
+	if (respawnTimer < respawnInvi)
+		return;
+
+	if (pawn->type.compare("Astroid") == 0) {
+		Destroy();
+		std::cout << pawn->x << "," << pawn->y << std::endl;
+	}
+	else
+		std::cout << "Collide with bullet" << std::endl;
+}
+
+void Ship::Destroy() {
+	if (GameManager::getInstance()->life > 1) {
+		GameManager::getInstance()->life -= 1;
+		respawnTimer = 0;
+		x = 400;
+		y = 300;
+		speedx = 0.0f;
+		speedy = 0.0f;
+	} else {
+		isDead = true;
+		GameManager::getInstance()->state = STATE_GAMEOVER;
+	}
 }

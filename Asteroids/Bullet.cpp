@@ -8,6 +8,7 @@ Bullet::Bullet(float x, float y, float speedx, float speedy) : Pawn(){
 	this->speedy = speedy;
 	shape.setRadius(5);
 	radius = 5;
+	type = "Bullet";
 }
 
 void Bullet::Update() {
@@ -16,4 +17,9 @@ void Bullet::Update() {
 		isDead = true;
 		return;
 	}
+}
+
+void Bullet::Collide(Pawn* pawn) {
+	if (pawn->type.compare("Astroid") == 0)
+		Destroy();
 }

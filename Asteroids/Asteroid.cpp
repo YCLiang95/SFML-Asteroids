@@ -14,6 +14,8 @@ Asteroid::Asteroid(int size) : Pawn() {
 
 	x = rand() % 800;
 	y = rand() % 600;
+
+	type = "Asteroid";
 }
 
 void Asteroid::Update() {

@@ -18,12 +18,14 @@ public:
 
 	bool isDead;
 
+	std::string type;
+
 	Pawn();
 
 public:
 	void virtual Update();
 	void virtual Draw();
-	void virtual Collide(Pawn*);
+	void virtual Collide(Pawn* pawn);
 	void virtual Destroy() {
 		isDead = true;
 	};
